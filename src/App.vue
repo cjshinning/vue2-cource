@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    Hello
+    <router-view></router-view>
+
+    <van-tabbar route>
+      <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>
+      <van-tabbar-item icon="shop-o" to="/lession">我的课程</van-tabbar-item>
+      <van-tabbar-item icon="friends-o" to="/profile">个人中心</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
@@ -10,9 +16,6 @@
   padding: 0;
 }
 
-#app {
-  color: $color;
-  background: $background;
-  width: 375px;
-}
+// 这里我们可以去覆盖vant的样式
+#app {}
 </style>

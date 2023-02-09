@@ -2,6 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
 const path = require('path');
 
 module.exports = defineConfig({
+  lintOnSave: false,
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
