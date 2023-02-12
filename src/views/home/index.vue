@@ -11,7 +11,7 @@ import HomeHeader from './home-header.vue';
 import { createNamespacedHelpers } from 'vuex';
 import * as Types from '@/store/action-types';
 // 这个拿到的都是home下的模块
-let { mapState, mapMutations } = createNamespacedHelpers('home');
+let { mapState: mapState, mapMutations } = createNamespacedHelpers('home');
 
 export default {
   methods: {
