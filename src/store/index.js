@@ -12,6 +12,6 @@ const store = new Vuex.Store({
   }
 })
 
-console.log(store.state);
+window.store = store;
 
 export default store;
