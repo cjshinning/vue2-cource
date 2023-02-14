@@ -15,5 +15,4 @@ files.keys().forEach(key => {
   }
   modules[namespace][type] = files(key).default; //获取文件导出结果
 })
-console.log(modules)
 export default modules;
