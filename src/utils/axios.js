@@ -17,7 +17,7 @@ class HttpRequest {
       }
 
       // 可以记录请求的取消函数
-      let CancelToken = axios.CancleToken;
+      let CancelToken = axios.CancelToken;
       config.CancelToken = new CancelToken((c) => { //存在vuex中，页面切换的时候 组件销毁是执行
         // c就是当前取消的token
       })
@@ -57,14 +57,14 @@ class HttpRequest {
     this.setInterceptor(instance, config.url);
     return instance(config);  //产生的是一个promise axios()
   }
-  get(url, data) { //url, {} axios.get('/xxx', {params:xxx})
+  get(url, data = {}) { //url, {} axios.get('/xxx', {params:xxx})
     return this.request({
       url,
       method: 'get',
       ...data
     })
   }
-  post(url, data) { //url, {} axios.get('/xxx', {params:xxx})
+  post(url, data = {}) { //url, {} axios.get('/xxx', {params:xxx})
     return this.request({
       url,
       method: 'post',

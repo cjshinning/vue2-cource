@@ -2,7 +2,13 @@
   <div>
     <HomeHeader v-model="currentCategory"></HomeHeader>
     <!-- 列表需要用到筛选 -->
-    {{ category }}
+    <!-- {{ category }} -->
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item>1</van-swipe-item>
+      <van-swipe-item>2</van-swipe-item>
+      <van-swipe-item>3</van-swipe-item>
+      <van-swipe-item>4</van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 
@@ -11,11 +17,16 @@ import HomeHeader from './home-header.vue';
 import { createNamespacedHelpers } from 'vuex';
 import * as Types from '@/store/action-types';
 // 这个拿到的都是home下的模块
-let { mapState: mapState, mapMutations } = createNamespacedHelpers('home');
+let { mapState: mapState, mapMutations, mapActions } = createNamespacedHelpers('home');
 
 export default {
   methods: {
-    ...mapMutations([Types.SET_CATEGORY])
+    ...mapMutations([Types.SET_CATEGORY]),
+    ...mapActions([Types.SET_SLIDES])
+  },
+  mounted() {
+    // 页面一加载就开始获取数据
+    this[Types.SET_SLIDES]();
   },
   computed: {
     ...mapState(['category']),
