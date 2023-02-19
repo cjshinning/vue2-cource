@@ -1,4 +1,6 @@
+import store from '@/store';
 import axios from 'axios';
+import * as Types from '@/store/action-types';
 
 class HttpRequest {
   constructor() {
@@ -18,15 +20,17 @@ class HttpRequest {
 
       // 可以记录请求的取消函数
       let CancelToken = axios.CancelToken;
-      config.CancelToken = new CancelToken((c) => { //存在vuex中，页面切换的时候 组件销毁是执行
+      // xhr.abort()终端请求的取消函数
+      config.cancelToken = new CancelToken((c) => { //存在vuex中，页面切换的时候 组件销毁是执行
         // c就是当前取消的token
+        store.commit(Types.SET_TOKEN, c); //
       })
 
       this.queue[url] = true;
       return config;  //只是扩展请求的配置
     })
 
-    instance.interceptors.response.use((response) => {
+    instance.interceptors.response.use((res) => {
       delete this.queue[url]; //一旦有响应了，就从队列删除
 
       if (Object.keys(this.queue).length == 0) {

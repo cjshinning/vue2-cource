@@ -4,10 +4,9 @@
     <!-- 列表需要用到筛选 -->
     <!-- {{ category }} -->
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>1</van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
+      <van-swipe-item v-for="(s, index) in slides" :key="index">
+        <img :src="s.url" alt="">
+      </van-swipe-item>
     </van-swipe>
   </div>
 </template>
@@ -26,10 +25,12 @@ export default {
   },
   mounted() {
     // 页面一加载就开始获取数据
-    this[Types.SET_SLIDES]();
+    if (this.slides.length == 0) { //如果vuex中有数据，直接拿来用
+      this[Types.SET_SLIDES]();
+    }
   },
   computed: {
-    ...mapState(['category']),
+    ...mapState(['category', 'slides']),
     currentCategory: {
       get() { //取值走他
         return this.category;
@@ -50,6 +51,13 @@ export default {
 }
 </script>
 
-<!-- [vuex] unknown local mutation type: home/SET_CATEGORY, global type: home/home/SET_CATEGORY -->
+<style lang="scss">
+.my-swipe {
+  height: 120px;
 
-<!-- [vuex] unknown local mutation type: SET_CATEGORY, global type: home/SET_CATEGORY -->
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
