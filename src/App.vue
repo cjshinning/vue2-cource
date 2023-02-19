@@ -18,11 +18,14 @@
 
 // 这里我们可以去覆盖vant的样式
 #app {
-  .van-dropdown-menu__bar {
+
+  .van-dropdown-menu__bar,
+  .van-nav-bar {
     background-color: $background;
   }
 
-  .van-dropdown-menu__title {
+  .van-dropdown-menu__title,
+  .van-nav-bar__title {
     color: $color;
   }
 }

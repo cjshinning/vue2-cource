@@ -23,10 +23,15 @@ export default {
     ...mapMutations([Types.SET_CATEGORY]),
     ...mapActions([Types.SET_SLIDES])
   },
-  mounted() {
+  async mounted() {
     // 页面一加载就开始获取数据
     if (this.slides.length == 0) { //如果vuex中有数据，直接拿来用
-      this[Types.SET_SLIDES]();
+      try {
+        await this[Types.SET_SLIDES]();
+      } catch (e) {
+        console.log(e)
+      }
+
     }
   },
   computed: {
