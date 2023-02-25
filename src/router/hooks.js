@@ -8,5 +8,8 @@ export default {
     store.commit(Types.CLEAR_TOKEN);  //清空token
     next()
   },
-
+  'login_permission': async (to, from, next) => {
+    await store.dispatch(`user/${Types.VALIDATE}`);
+    next();
+  }
 }

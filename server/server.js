@@ -27,6 +27,16 @@ app.get('/api/slider', (req, res) => {
   res.json(json);
 })
 
+app.post('/user/login', (req, res) => {
+  const json = require('./public/json/login.json');
+  res.json(json);
+})
+
+app.get('/user/validate', (req, res) => {
+  const json = require('./public/json/validate.json');
+  res.json(json);
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

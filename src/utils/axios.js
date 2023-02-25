@@ -18,6 +18,12 @@ class HttpRequest {
         // 开loading
       }
 
+      let token = localStorage.getItem('token');
+      if (token) {
+        // 每次请求都会鞋带一个权限访问服务器
+        config.headers.authorization = token;
+      }
+
       // 可以记录请求的取消函数
       let CancelToken = axios.CancelToken;
       // xhr.abort()终端请求的取消函数
