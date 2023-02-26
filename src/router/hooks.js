@@ -9,7 +9,38 @@ export default {
     next()
   },
   'login_permission': async (to, from, next) => {
-    await store.dispatch(`user/${Types.VALIDATE}`);
+    let needLogin = to.matched.some(item => item.meta.needLogin);
+
+    // 如果vuex中有值，我就认为你当前登录过
+    if (!store.state.user.hasPermission) {  //用户刷新token在但是vuex中的数据丢失了
+      // 返回了一个isLogin字段表示用户是否登录过了
+      let isLogin = await store.dispatch(`user/${Types.VALIDATE}`);
+
+      if (needLogin) {  //需要登录
+        if (!isLogin) {
+          next('/login'); //需求登录但是没登录
+        } else {
+          next(); // 需要登录 也登录了
+        }
+      } else {  //不需要登录
+        if (to.name == 'login') { //访问的是登录页面
+          if (!isLogin) {
+            next();
+          } else {
+            next('/profile');
+          }
+        } else {
+          next();
+        }
+      }
+    } else {
+      if (to.name == 'login') {
+        next('/profile');
+      } else {
+        next();
+      }
+    }
+
     next();
   }
 }

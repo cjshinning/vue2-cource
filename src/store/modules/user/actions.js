@@ -17,6 +17,7 @@ const userActions = {
     try {
       let userInfo = await validate();  //校验是否登陆过
       dispatch(Types.SET_USER, { userInfo, has: true });
+      return true;
     } catch (e) {
       dispatch(Types.SET_USER, { userInfo: {}, has: false });
       return false;
