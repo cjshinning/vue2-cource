@@ -42,5 +42,20 @@ export default {
     }
 
     next();
+  },
+  'menu-permission': async (to, from, next) => {
+    // 这里需要对权限进行处理 动态路由添加
+
+    if (store.state.user.hasPermission) { //要求用户登录，才能去拿菜单
+      if (!store.state.user.menuPermission) { //没菜单权限才需要处理
+        await store.dispatch(`user/${Types.ADD_ROUTE}`);
+        next({ ...to, replace: true }); //页面重新跳转，组件也ok了
+      } else {
+        next();
+      }
+    } else {
+      next();
+    }
+
   }
 }

@@ -3,6 +3,17 @@
   "data": {
     "username": "123",
     "token": "asdsdhhw45wewjwejajnhfdhfhfahahhahwghbz96jsjd0",
-    "authList": []
+    "authList": [
+      {
+        "auth":"lession",
+        "name":"课程管理",
+        "path":"/profile/lession-manager"
+      },
+      {
+        "auth":"student",
+        "name":"学员管理",
+        "path":"/profile/student-manager"
+      }
+    ]
   }
 }

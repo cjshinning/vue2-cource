@@ -13,6 +13,9 @@ const userMutations = {
   },
   [Types.SET_PERMISSION](state, payload) {
     state.hasPermission = payload;
+  },
+  [Types.SET_MENU_PERMISSION](state, payload) {
+    state.menuPermission = payload;
   }
 }
 

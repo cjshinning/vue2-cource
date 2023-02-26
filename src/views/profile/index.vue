@@ -12,6 +12,13 @@
         <span>{{ $store.state.user.username }}</span>
       </template>
     </div>
+    <template v-if="$store.state.user.menuPermission">
+      <van-tabs type="card">
+        <van-tab :title="item.name" v-for="(item, index) in $store.state.user.authList" :key="index" :to="item.path">{{
+          item.name }}</van-tab>
+      </van-tabs>
+      <router-view></router-view>
+    </template>
   </div>
 </template>
 

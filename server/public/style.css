@@ -7,3 +7,18 @@ body {
   "err": 1,
   "data": "用户不存在"
 } */
+
+/* "authList": [ {
+  "auth": "points",
+    "name":"积分查看",
+    "path":"/profile/points"
+}
+
+,
+{
+"auth": "collect",
+  "name":"收藏列表",
+  "path":"/profile/collect"
+}
+
+] */
